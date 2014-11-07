@@ -1,0 +1,143 @@
+" ========================================================================
+" Vundle stuff
+" ========================================================================
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" Let Vundle manage Vundle (required)!
+Bundle 'gmarik/vundle'
+
+" My bundles
+"
+Bundle 'flazz/vim-colorschemes'
+Bundle 'scrooloose/nerdtree'
+Bundle 'ervandew/supertab'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'tpope/vim-bundler'
+Bundle 'tpope/vim-cucumber'
+Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-dispatch'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'elixir-lang/vim-elixir'
+Bundle 'rking/ag.vim'
+Bundle 'BjRo/vim-extest.git'
+Bundle 'thoughtbot/vim-rspec'
+Bundle 'slim-template/vim-slim'
+Bundle 'othree/html5.vim'
+Bundle 'fatih/vim-go'
+Bundle 'tpope/vim-fireplace'
+
+let mapleader=','
+noremap \ ,
+
+set number
+set numberwidth=2
+map - dd
+map <space> viw
+map <c-d> dd
+
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+
+" vim-rspec mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+
+map <Leader>g :w<CR>:!go run %<CR>
+map <Leader>h :w<CR>:!go test<CR>
+
+map <Leader>m :Eval<CR>
+map <Leader>b :%Eval<CR> 
+
+map <Leader>x :Dispatch rake<CR>
+
+map <Leader>c :w<CR>:!elixir %<CR>
+
+"vim-extest mappings
+map <Leader>r :ExTestRunFile<CR>
+map <Leader>e :ExTestRunMethod<CR>
+map <Leader>w :ExTestRunLast<CR>
+
+" Run currently open cucumber feature file
+map <Leader>cf :w<cr>:!cucumber %<cr>
+"  
+"  " Run current cucumber scenario
+map <Leader>cl :w<cr>:exe "!cucumber %" . ":" . line(".")<cr>
+"   
+"   " Run all cucumber feature files 
+map <Leader>ct :w<cr>:!cucumber<cr>
+
+" Run ExUnit
+map <Leader>z :!mix test<CR>
+"
+" ================
+" Ruby stuff
+" ================
+set t_Co=256
+set background=dark
+colorscheme mustang
+syntax on                 " Enable syntax highlighting
+filetype plugin indent on " Enable filetype-specific indenting and plugins
+
+augroup myfiletypes
+  " Clear old autocmds in group
+  autocmd!
+  " autoindent with two spaces, always expand tabs
+  autocmd FileType ruby,eruby,yaml setlocal ai sw=2 sts=2 et
+  autocmd FileType ruby,eruby,yaml setlocal path+=lib
+
+augroup END
+
+set nocompatible
+set backspace=indent,eol,start " allow backspacing over everything in insert mode
+set history=500		" keep 500 lines of command line history
+set ruler		" show the cursor position all the time
+set showcmd		" display incomplete commands
+set autoindent
+set showmatch
+set nowrap
+set autoread
+set wmh=0
+set viminfo+=!
+set guioptions-=T
+set guifont=Triskweline_10:h10
+set et
+set sw=2
+set smarttab
+set noincsearch
+set ignorecase smartcase
+set laststatus=2  " Always show status line.
+set autoindent " always set autoindenting on
+
+" Get rid of the delay when hitting esc!
+set noesckeys
+
+" Highlight the status line
+highlight StatusLine ctermfg=blue ctermbg=yellow
+
+set shiftround " When at 3 spaces and I hit >>, go to 4, not 5.
+
+set nofoldenable " Say no to code folding...
+
+" Better? completion on command line
+set wildmenu
+" What to do when I press 'wildchar'. Worth tweaking to see what feels right.
+set wildmode=list:full
+
+" (Hopefully) removes the delay when hitting esc in insert mode
+set noesckeys
+set ttimeout
+set ttimeoutlen=1
+
+" Don't wait so long for the next keypress (particularly in ambigious Leader
+" situations.
+set timeoutlen=500
+
+:setf htmldjango
