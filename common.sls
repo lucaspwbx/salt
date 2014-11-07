@@ -81,6 +81,3 @@ vundle:
     - user: lucasweiblen
     - group: lucasweiblen
     - file_mode: 644
-
-
-
